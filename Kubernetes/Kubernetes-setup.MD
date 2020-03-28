@@ -35,17 +35,18 @@
 1. Create a Route53 private hosted zone (you can create Public hosted zone if you have a domain)
    ```sh
    Routeh53 --> hosted zones --> created hosted zone  
-   Domain Name: valaxy.net
+   Domain Name: subash.net
    Type: Private hosted zone for Amzon VPC
    ```
-
+   enabale DNS resolution for VPC - demo.k8s.subash.net
+   enable  DNS hostnames. for VPC -demo.k8s.subash.net
 1. create an S3 bucket
    ```sh
-    aws s3 mb s3://demo.k8s.valaxy.net
+    aws s3 mb s3://demo.k8s.subash.net
    ```
 1. Expose environment variable:
    ```sh
-    export KOPS_STATE_STORE=s3://demo.k8s.valaxy.net
+    export KOPS_STATE_STORE=s3://demo.k8s.subash.net
    ```
 
 1. Create sshkeys before creating cluster
@@ -57,10 +58,11 @@
    ```sh
    kops create cluster --cloud=aws --zones=ap-south-1b --name=demo.k8s.valaxy.net --dns-zone=valaxy.net --dns private 
     ```
+  kops create cluster --cloud=aws --zones=us-east-2a --node-size=t2.micro --master-size=t2.micro --dns-zone=subash.net --dns private demo.k8s.subash.net
 
 1. Create kubernetes cluser
     ```sh
-    kops update cluster demo.k8s.valaxy.net --yes
+    kops update cluster demo.k8s.subash.net --yes
     ```
 
 1. Validate your cluster
